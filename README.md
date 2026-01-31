@@ -4,6 +4,7 @@ Every other one I tried on every github and website SUCKS. This one doesn't. The
 
 Universal Runtime & Dev Tool Installer
 ======================================
+<p align="center"> <img src="banner.png" alt="AIO Runtime Dev Tool Installer Banner"> </p>
 
 Author: XechostormX
 Purpose: One-click (elevated) PowerShell script to silently install or enable a full suite of legacy and modern runtimes, libraries, and developer tools needed for old games, modern applications, and development work.
