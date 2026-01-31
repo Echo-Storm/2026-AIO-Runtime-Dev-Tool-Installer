@@ -1,13 +1,13 @@
-I write stuff when I get annoyed that something I need doesn't exist. So here's an AIO that gives you everything you need on Windows 11 to get gaming, or installing your build environment, mysys etc.
-Every other one I tried on every github and website SUCKS. This one doesn't. The only non 'library' it actually installs is Powershell 7, because... yeah. 
-
+<p align="center"> <img src="banner.png" alt="AIO Runtime Dev Tool Installer Banner"> </p>
 
 Universal Runtime & Dev Tool Installer
 ======================================
-<p align="center"> <img src="banner.png" alt="AIO Runtime Dev Tool Installer Banner"> </p>
 
 Author: XechostormX
 Purpose: One-click (elevated) PowerShell script to silently install or enable a full suite of legacy and modern runtimes, libraries, and developer tools needed for old games, modern applications, and development work.
+
+I write stuff when I get annoyed that something I need doesn't exist. So here's an AIO that gives you everything you need on Windows 11 to get gaming, or installing your build environment, mysys etc.
+Every other one I tried on every github and website SUCKS. This one doesn't. The only non 'library' it actually installs is Powershell 7, because... yeah. 
 
 Installation
 ------------
