@@ -1,12 +1,18 @@
 I write stuff when I get annoyed that something I need doesn't exist. So here's an AIO that gives you everything you need on Windows 11 to get gaming, or installing your build environment, mysys etc.
-just doubleclick the .bat file, it will ask for Admin permissions.
 Every other one I tried on every github and website SUCKS. This one doesn't.
+
 
 Universal Runtime & Dev Tool Installer
 ======================================
 
 Author: XechostormX
 Purpose: One-click (elevated) PowerShell script to silently install or enable a full suite of legacy and modern runtimes, libraries, and developer tools needed for old games, modern applications, and development work.
+
+Installation
+------------
+place the .bat and the .ps1 somewhere that has write permissions. (D: , Downloads, Desktop, etc.)
+Double Click the .bat file
+Go find something to do for like 10 minutes.
 
 Key Features
 ------------
