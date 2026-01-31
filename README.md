@@ -1,127 +1,118 @@
-# ALL-THE-RUNTIMES---ALL-OF-THEM
-Installs everything a fresh install of windows 11 is going to ask for, no shady crap.
+I write stuff when I get annoyed that something I need doesn't exist. So here's an AIO that gives you everything you need to get gaming, or installing your build environment, mysys etc.
+just doubleclick the .bat file, it will ask for Admin permissions.
 
-Universal Runtime Installer (A’s Edition)
-A portable, silent, battle‑hardened runtime installer for fresh Windows setups.
-Designed for power users who want a clean system with zero malware risk, zero bloat, and zero hunting for installers ever again.
+Universal Runtime & Dev Tool Installer
+======================================
 
-This script installs every essential runtime your system will realistically need for:
+Author: XechostormX
+Purpose: One-click (elevated) PowerShell script to silently install or enable a full suite of legacy and modern runtimes, libraries, and developer tools needed for old games, modern applications, and development work.
 
-Gaming
+Key Features
+------------
+- Skips components already present (path/registry/file checks)
+- Retries failed downloads up to 3 times with 5-second delay
+- Detailed timestamped logging to console and file
+- Clean final summary: Installed/Updated (green), Skipped (yellow), Failed (red)
+- Cleans up all temporary files at the end
+- Protects header from progress bar overwrite with blank lines
+- Handles reboot-required exit codes (3010/1641/1638) as success
+- No forced reboots (/norestart everywhere)
 
-Modding
+What It Installs / Enables (Full Itemized List)
+-----------------------------------------------
 
-Media playback (MPV, MPC-HC, etc.)
+1. 7-Zip portable (7za.exe)
+   - Downloaded only if missing
+   - Used internally for DirectX extraction
+   - Not shown in final summary (helper only)
 
-.NET apps
+2. .NET Framework 3.5
+   - Enabled via Windows Optional Feature (NetFx3)
+   - Skipped if registry shows it's already installed
 
-Java apps
+3. DirectX June 2010 Redistributable (full legacy DirectX 9.0c)
+   - Downloads directx_Jun2010_redist.exe
+   - Extracts entire ~140 MB archive (~hundreds of .cab files) using 7za
+   - Runs DXSETUP.exe /silent → installs ALL included components:
+     - Direct3D 9 (including d3dx9_1 to d3dx9_43.dll)
+     - DirectDraw / Direct3D Retained Mode (d3drm.dll)
+     - DirectInput, DirectPlay, DirectSound, DirectMusic
+     - XAudio2, XACT, XInput 1.3/1.4
+     - Managed DirectX (rare .NET usage)
+     - All legacy codecs/filters for old games
+   - Skipped if d3dx9_43.dll already exists in System32
+   - Covers backwards compatibility for most DirectX 7/8 games
 
-Web apps
+4. Legacy OpenAL (Creative Labs oalinst.exe)
+   - Classic OpenAL installer
+   - Skipped if HKLM\SOFTWARE\Creative Labs\OpenAL registry key exists
 
-Legacy software
+5. OpenAL Soft (modern replacement, v1.25.1)
+   - Downloads openal-soft-1.25.1-bin.zip
+   - Extracts and copies soft_oal.dll → OpenAL32.dll in System32 and SysWOW64
+   - Skipped if both OpenAL32.dll files already exist
 
-Modern software
+6. Visual C++ Redistributables (2005–2022)
+   - 2005 x86/x64
+   - 2008 x86/x64
+   - 2010 x86/x64 (from Windows Update catalog)
+   - 2012 x86/x64
+   - 2013 x86/x64
+   - 2015–2022 merged x86/x64
+   - Skipped individually if correct registry version key exists
 
-Development tools
+7. .NET Runtimes
+   - Framework 4.8.1 (offline installer)
+   - .NET 6 ASP.NET Core Runtime
+   - .NET 6 Desktop Runtime
+   - .NET 7 ASP.NET Core Runtime
+   - .NET 7 Desktop Runtime
+   - .NET 8 ASP.NET Core Runtime
+   - .NET 8 Desktop Runtime
+   - .NET 9 ASP.NET Core Runtime
+   - .NET 9 Desktop Runtime
+   - Skips based on registry (major version folder for Core, Release value for Framework)
 
-All downloads come directly from official vendor URLs.
+8. Adoptium Temurin OpenJDK
+   - JDK 21 (latest LTS)
+   - JDK 17 (LTS)
+   - JDK 8 (legacy)
+   - Skipped if install folder already exists under C:\Program Files\Eclipse Adoptium\
 
-What It Installs
-🎮 Gaming / Legacy Support
-DirectX End‑User Runtimes (June 2010)
+9. Vulkan Runtime (latest version)
+   - Silent installer
+   - Skipped if HKLM\SOFTWARE\Khronos\Vulkan\Runtime exists
 
-OpenAL Soft
+10. Microsoft Edge WebView2 Runtime
+    - Evergreen bootstrapper (silent)
+    - Skipped if client registry key exists
 
-Visual C++ Redistributables (2005 → 2022, x86 + x64)
+11. PowerShell 7.5.4
+    - MSI installer with context menu, remoting, manifest
+    - Skipped if pwsh.exe exists in Program Files\PowerShell\7
 
-🧩 .NET Ecosystem
-.NET Desktop Runtime (LTS + Current)
+12. Python (pinned versions)
+    - 3.10.11
+    - 3.11.9
+    - 3.12.10
+    - All-users install, adds to PATH, no launcher
+    - Skipped if python.exe exists in versioned folder
 
-.NET SDK (LTS + Current)
+13. Git for Windows (v2.52.0 64-bit)
+    - Very silent with icons, shell assoc, git-lfs
+    - Skipped if git.exe exists in Program Files\Git\bin
 
-ASP.NET Core Hosting Bundle
+14. Visual Studio Code (latest stable user x64)
+    - Very silent, no auto-run
+    - Skipped if Code.exe exists in %LOCALAPPDATA%\Programs\Microsoft VS Code
 
-Universal CRT (if missing)
+Behavior Notes
+--------------
+- All downloads use retry logic (3 attempts)
+- DirectX extraction installs hundreds of files (DLLs, .inf, .cat, etc.) via official DXSETUP.exe
+- No separate DirectX 7/8 installers (June 2010 provides backwards compatibility)
+- Summary lists every major component (except 7za helper)
+- Temp folder fully deleted at end
+- Designed to run elevated (batch wrapper recommended)
 
-☕ Java (Adoptium Temurin)
-JDK LTS
-
-JDK Current
-
-JRE LTS
-
-JRE Current
-
-🌐 Web Components
-Microsoft WebView2 Runtime
-
-🖥️ Graphics / System
-Vulkan Runtime (if missing)
-
-Other Microsoft dependencies required by modern apps
-
-Why This Exists
-Windows reinstalls are annoying enough.
-Hunting down runtimes from random websites is worse.
-
-This script gives you:
-
-A single command to install everything
-
-Silent installs
-
-Re‑runnable (safe to run anytime)
-
-Portable (no system modifications beyond the runtimes)
-
-No bundled junk
-
-No telemetry
-
-No shady mirrors
-
-If you reinstall Windows often, mod games, run MPV, use .NET apps, or develop anything, this saves hours.
-
-Usage
-Download or clone this repository
-
-Run:
-
-Code
-install.bat
-or directly:
-
-Code
-powershell -ExecutionPolicy Bypass -File install.ps1
-The script will:
-
-Create an installers/ folder
-
-Download missing installers
-
-Install everything silently
-
-Skip anything already installed
-
-Folder Structure
-Code
-Runtimes/
- ├─ install.ps1
- ├─ install.bat
- └─ installers/   (auto‑created)
-Requirements
-Windows 10 or 11
-
-PowerShell 5+ (built‑in)
-
-Internet connection for first run
-
-Notes
-Python and MSYS2 are intentionally excluded (install manually).
-
-All URLs point to official vendor sources (Microsoft, Adoptium, OpenAL Soft).
-
-Safe to run after every Windows reinstall.
-
-If you want, I can also generate a badge set, a changelog template, or a GitHub Actions workflow to auto‑validate URLs so the script never breaks.
+Enjoy your fully loaded legacy + modern runtime setup!
