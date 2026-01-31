@@ -95,7 +95,7 @@ What It Installs / Enables (Full Itemized List)
     - 3.10.11
     - 3.11.9
     - 3.12.10
-    - All-users install, adds to PATH, no launcher
+    - All-users install, adds to PATH, includes the 'launcher'
     - Skipped if python.exe exists in versioned folder
 
 13. Git for Windows (v2.52.0 64-bit)
