@@ -1,4 +1,4 @@
-I write stuff when I get annoyed that something I need doesn't exist. So here's an AIO that gives you everything you need to get gaming, or installing your build environment, mysys etc.
+I write stuff when I get annoyed that something I need doesn't exist. So here's an AIO that gives you everything you need on Windows 11 to get gaming, or installing your build environment, mysys etc.
 just doubleclick the .bat file, it will ask for Admin permissions.
 Every other one I tried on every github and website SUCKS. This one doesn't.
 
