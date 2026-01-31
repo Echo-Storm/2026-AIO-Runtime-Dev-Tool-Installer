@@ -1,5 +1,5 @@
 I write stuff when I get annoyed that something I need doesn't exist. So here's an AIO that gives you everything you need on Windows 11 to get gaming, or installing your build environment, mysys etc.
-Every other one I tried on every github and website SUCKS. This one doesn't. The only none 'library' it actually installs is Powershell 7, because... yeah. 
+Every other one I tried on every github and website SUCKS. This one doesn't. The only non 'library' it actually installs is Powershell 7, because... yeah. 
 
 
 Universal Runtime & Dev Tool Installer
