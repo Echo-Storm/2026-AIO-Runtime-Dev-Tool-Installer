@@ -1,0 +1,17 @@
+﻿2026-04-25 18:07:13 - Started. Base=E:\2026-AIO-Runtime-Dev-Tool-Installer TempDL=E:\2026-AIO-Runtime-Dev-Tool-Installer\temp_installers
+2026-04-25 18:07:13 - [SKIP] winget already present at C:\Users\Echostorm\AppData\Local\Microsoft\WindowsApps\winget.exe
+2026-04-25 18:07:13 - [....] Downloading 7za_bootstrap.zip...
+2026-04-25 18:07:14 - [ OK ] Downloaded: 7za_bootstrap.zip
+2026-04-25 18:07:15 - [ OK ] 7za.exe ready
+2026-04-25 18:07:15 - [SKIP] .NET Framework 3.5 already installed
+2026-04-25 18:07:15 - [....] Downloading directx_Jun2010_redist.exe...
+2026-04-25 18:08:14 - [ OK ] Downloaded: directx_Jun2010_redist.exe
+2026-04-25 18:08:15 - [....] Running: DirectX June 2010
+2026-04-25 18:08:15 - [FAIL] Exception: Cannot validate argument on parameter 'ArgumentList'. The argument is null, empty, or an element of the argument collection contains a null value. Supply a collection that does not contain any null values and then try the command again.
+2026-04-25 18:08:15 - [FAIL] DirectX install failed
+2026-04-25 18:08:15 - [....] Downloading oalinst.zip...
+2026-04-25 18:08:16 - [ OK ] Downloaded: oalinst.zip
+2026-04-25 18:08:16 - [....] Running: Legacy OpenAL
+2026-04-25 18:08:16 - [FAIL] Exception: Cannot validate argument on parameter 'ArgumentList'. The argument is null, empty, or an element of the argument collection contains a null value. Supply a collection that does not contain any null values and then try the command again.
+2026-04-25 18:08:16 - [FAIL] Legacy OpenAL install failed
+2026-04-25 18:08:16 - [....] Downloading openal-soft-latest-bin.zip...

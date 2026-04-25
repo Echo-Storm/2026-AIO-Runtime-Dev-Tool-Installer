@@ -13,5 +13,5 @@ if %errorlevel% neq 0 (
 
 :: Run the PowerShell installer
 powershell -ExecutionPolicy Bypass -NoProfile -File "%~dp0ALLTHERUNTIMES.ps1"
-
 pause
+
