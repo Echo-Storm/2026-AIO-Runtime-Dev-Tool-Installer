@@ -15,3 +15,61 @@
 2026-04-25 18:08:16 - [FAIL] Exception: Cannot validate argument on parameter 'ArgumentList'. The argument is null, empty, or an element of the argument collection contains a null value. Supply a collection that does not contain any null values and then try the command again.
 2026-04-25 18:08:16 - [FAIL] Legacy OpenAL install failed
 2026-04-25 18:08:16 - [....] Downloading openal-soft-latest-bin.zip...
+2026-04-25 18:08:28 - [ OK ] Downloaded: openal-soft-latest-bin.zip
+2026-04-25 18:08:30 - [ OK ] OpenAL Soft installed
+2026-04-25 18:08:30 - [....] Downloading vc_2005_x86.exe...
+2026-04-25 18:08:32 - [ OK ] Downloaded: vc_2005_x86.exe
+2026-04-25 18:08:32 - [....] Running: VC++ 2005_x86
+2026-04-25 18:08:32 - [FAIL] Exception: Cannot validate argument on parameter 'ArgumentList'. The argument is null, empty, or an element of the argument collection contains a null value. Supply a collection that does not contain any null values and then try the command again.
+2026-04-25 18:08:32 - [FAIL] VC++ 2005_x86 failed
+2026-04-25 18:08:32 - [....] Downloading vc_2005_x64.exe...
+2026-04-25 18:08:33 - [ OK ] Downloaded: vc_2005_x64.exe
+2026-04-25 18:08:33 - [....] Running: VC++ 2005_x64
+2026-04-25 18:08:33 - [FAIL] Exception: Cannot validate argument on parameter 'ArgumentList'. The argument is null, empty, or an element of the argument collection contains a null value. Supply a collection that does not contain any null values and then try the command again.
+2026-04-25 18:08:33 - [FAIL] VC++ 2005_x64 failed
+2026-04-25 18:08:34 - [....] Downloading vc_2008_x86.exe...
+2026-04-25 18:08:36 - [ OK ] Downloaded: vc_2008_x86.exe
+2026-04-25 18:08:36 - [....] Running: VC++ 2008_x86
+2026-04-25 18:08:36 - [FAIL] Exception: Cannot validate argument on parameter 'ArgumentList'. The argument is null, empty, or an element of the argument collection contains a null value. Supply a collection that does not contain any null values and then try the command again.
+2026-04-25 18:08:36 - [FAIL] VC++ 2008_x86 failed
+2026-04-25 18:08:36 - [....] Downloading vc_2008_x64.exe...
+2026-04-25 18:08:39 - [ OK ] Downloaded: vc_2008_x64.exe
+2026-04-25 18:08:39 - [....] Running: VC++ 2008_x64
+2026-04-25 18:08:39 - [FAIL] Exception: Cannot validate argument on parameter 'ArgumentList'. The argument is null, empty, or an element of the argument collection contains a null value. Supply a collection that does not contain any null values and then try the command again.
+2026-04-25 18:08:39 - [FAIL] VC++ 2008_x64 failed
+2026-04-25 18:08:39 - [....] Downloading vc_2010_x86.exe...
+2026-04-25 18:08:45 - [ OK ] Downloaded: vc_2010_x86.exe
+2026-04-25 18:08:45 - [....] Running: VC++ 2010_x86
+2026-04-25 18:08:45 - [FAIL] Exception: Cannot validate argument on parameter 'ArgumentList'. The argument is null, empty, or an element of the argument collection contains a null value. Supply a collection that does not contain any null values and then try the command again.
+2026-04-25 18:08:45 - [FAIL] VC++ 2010_x86 failed
+2026-04-25 18:08:45 - [....] Downloading vc_2010_x64.exe...
+2026-04-25 18:08:51 - [ OK ] Downloaded: vc_2010_x64.exe
+2026-04-25 18:08:51 - [....] Running: VC++ 2010_x64
+2026-04-25 18:08:51 - [FAIL] Exception: Cannot validate argument on parameter 'ArgumentList'. The argument is null, empty, or an element of the argument collection contains a null value. Supply a collection that does not contain any null values and then try the command again.
+2026-04-25 18:08:51 - [FAIL] VC++ 2010_x64 failed
+2026-04-25 18:08:51 - [....] Downloading vc_2012_x86.exe...
+2026-04-25 18:08:55 - [ OK ] Downloaded: vc_2012_x86.exe
+2026-04-25 18:08:55 - [....] Running: VC++ 2012_x86
+2026-04-25 18:08:55 - [FAIL] Exception: Cannot validate argument on parameter 'ArgumentList'. The argument is null, empty, or an element of the argument collection contains a null value. Supply a collection that does not contain any null values and then try the command again.
+2026-04-25 18:08:55 - [FAIL] VC++ 2012_x86 failed
+2026-04-25 18:08:55 - [....] Downloading vc_2012_x64.exe...
+2026-04-25 18:08:59 - [ OK ] Downloaded: vc_2012_x64.exe
+2026-04-25 18:08:59 - [....] Running: VC++ 2012_x64
+2026-04-25 18:08:59 - [FAIL] Exception: Cannot validate argument on parameter 'ArgumentList'. The argument is null, empty, or an element of the argument collection contains a null value. Supply a collection that does not contain any null values and then try the command again.
+2026-04-25 18:08:59 - [FAIL] VC++ 2012_x64 failed
+2026-04-25 18:08:59 - [....] Downloading vc_2013_x86.exe...
+2026-04-25 18:09:03 - [ OK ] Downloaded: vc_2013_x86.exe
+2026-04-25 18:09:03 - [....] Running: VC++ 2013_x86
+2026-04-25 18:09:03 - [FAIL] Exception: Cannot validate argument on parameter 'ArgumentList'. The argument is null, empty, or an element of the argument collection contains a null value. Supply a collection that does not contain any null values and then try the command again.
+2026-04-25 18:09:03 - [FAIL] VC++ 2013_x86 failed
+2026-04-25 18:09:03 - [....] Downloading vc_2013_x64.exe...
+2026-04-25 18:09:07 - [ OK ] Downloaded: vc_2013_x64.exe
+2026-04-25 18:09:07 - [....] Running: VC++ 2013_x64
+2026-04-25 18:09:07 - [FAIL] Exception: Cannot validate argument on parameter 'ArgumentList'. The argument is null, empty, or an element of the argument collection contains a null value. Supply a collection that does not contain any null values and then try the command again.
+2026-04-25 18:09:07 - [FAIL] VC++ 2013_x64 failed
+2026-04-25 18:09:07 - [....] Downloading vc_2015-2022_x86.exe...
+2026-04-25 18:09:17 - [ OK ] Downloaded: vc_2015-2022_x86.exe
+2026-04-25 18:09:17 - [....] Running: VC++ 2015-2022_x86
+2026-04-25 18:09:17 - [FAIL] Exception: Cannot validate argument on parameter 'ArgumentList'. The argument is null, empty, or an element of the argument collection contains a null value. Supply a collection that does not contain any null values and then try the command again.
+2026-04-25 18:09:17 - [FAIL] VC++ 2015-2022_x86 failed
+2026-04-25 18:09:17 - [....] Downloading vc_2015-2022_x64.exe...

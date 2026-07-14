@@ -63,11 +63,11 @@ function Get-File($url, $name) {
     return $null
 }
 
-function Run-Exe($path, $args, $name) {
+function Run-Exe($path, $argStr, $name) {
     if (-not (Test-Path $path)) { Log-Fail "Missing: $path"; return $false }
     Log-Status "Running: $name"
     try {
-        $p = Start-Process -FilePath $path -ArgumentList $args -Wait -PassThru -NoNewWindow
+        $p = Start-Process -FilePath $path -ArgumentList $argStr -Wait -PassThru -NoNewWindow
         Log "       Exit code: $($p.ExitCode)"
         return ($p.ExitCode -in 0, 3010, 1641, 1638)
     } catch {
@@ -76,11 +76,11 @@ function Run-Exe($path, $args, $name) {
     }
 }
 
-function Run-Msi($path, $args, $name) {
+function Run-Msi($path, $argStr, $name) {
     if (-not (Test-Path $path)) { Log-Fail "Missing: $path"; return $false }
     Log-Status "Running MSI: $name"
     try {
-        $p = Start-Process -FilePath "msiexec.exe" -ArgumentList "/i `"$path`" $args" -Wait -PassThru -NoNewWindow
+        $p = Start-Process -FilePath "msiexec.exe" -ArgumentList "/i `"$path`" $argStr" -Wait -PassThru -NoNewWindow
         Log "       Exit code: $($p.ExitCode)"
         return ($p.ExitCode -in 0, 3010, 1641, 1638)
     } catch {
