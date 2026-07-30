@@ -1,0 +1,8 @@
+# Runtime artifacts - regenerated on every run, shouldn't be committed
+temp_installers/
+RuntimeInstall_Log_*.txt
+*.log
+
+# Editor/OS cruft
+.vscode/
+Thumbs.db
