@@ -7,7 +7,7 @@ Author: XechostormX
 Purpose: One-click (elevated) PowerShell script to silently install or enable a full suite of legacy and modern runtimes, libraries, and developer tools needed for old games, modern applications, and development work.
 
 I write stuff when I get annoyed that something I need doesn't exist. So here's an AIO that gives you everything you need on Windows 11 to get gaming, or installing your build environment, mysys etc.
-Every other one I tried on every github and website SUCKS. This one doesn't. The non-'library' extras it installs are winget, PowerShell 7, Git, and VS Code, because... yeah.
+Every other one I tried on every github and website SUCKS. This one doesn't. The non-'library' extras it installs are winget, PowerShell 7, Git, Node.js, CMake, and VS Code, because... yeah.
 
 Installation
 ------------
@@ -28,7 +28,7 @@ Key Features
 - Detailed timestamped logging to console and file
 - Clean final summary: Installed (green), Skipped (yellow), Failed (red)
 - `-DryRun` switch previews every action (including what it would download) without installing or writing anything
-- Git, PowerShell, and the Temurin JDKs are resolved to their latest release at run time (via GitHub/Adoptium APIs) instead of a hardcoded version, with a pinned fallback if the API can't be reached
+- Git, PowerShell, CMake, the Temurin JDKs, and Node.js are resolved to their latest release/LTS at run time (via GitHub/Adoptium/nodejs.org APIs) instead of a hardcoded version, with a pinned fallback if the API can't be reached
 - Cleans up all temporary files at the end
 - Protects header from progress bar overwrite with blank lines
 - Handles reboot-required exit codes (3010/1641/1638) as success
@@ -96,6 +96,7 @@ What It Installs / Enables (Full Itemized List)
    - JDK 17 (LTS)
    - JDK 8 (legacy)
    - Resolved via Adoptium's "latest" API, so patch releases stay current automatically
+   - Installed with `INSTALLLEVEL=1` so PATH and JAVA_HOME actually get set - the Temurin MSI skips both by default on a bare `/quiet` install
    - Skipped if install folder already exists under C:\Program Files\Eclipse Adoptium\
 
 10. Vulkan Runtime (LunarG evergreen "latest" link)
@@ -108,7 +109,7 @@ What It Installs / Enables (Full Itemized List)
 
 12. PowerShell 7 (latest release)
     - Resolved from the PowerShell/PowerShell GitHub releases API at run time, with a pinned fallback if GitHub can't be reached
-    - MSI installer with context menu, remoting, manifest
+    - MSI installer with context menu, remoting, manifest, and `ADD_PATH=1` (a bare `/quiet` install otherwise leaves pwsh off PATH)
     - Skipped if an installed pwsh.exe already meets that version
 
 13. Python (pinned versions, refreshed periodically)
@@ -121,7 +122,17 @@ What It Installs / Enables (Full Itemized List)
     - Very silent with icons, shell assoc, git-lfs
     - Skipped if git.exe exists in Program Files\Git\bin
 
-15. Visual Studio Code (latest stable user x64)
+15. Node.js (latest LTS)
+    - Resolved from the official nodejs.org dist index at run time (skips any non-LTS "current" releases), with a pinned fallback if that can't be reached
+    - Installed with `ADDLOCAL=ALL` so npm and PATH are included
+    - Skipped if node.exe exists in Program Files\nodejs
+
+16. CMake (latest release)
+    - Resolved from the Kitware/CMake GitHub releases API at run time, with a pinned fallback if GitHub can't be reached
+    - Installed with `ADD_CMAKE_TO_PATH=System` (undocumented but stable - it's what CMake's own installer exposes and what GitHub Actions' runner-images setup uses)
+    - Skipped if cmake.exe exists in Program Files\CMake\bin
+
+17. Visual Studio Code (latest stable user x64)
     - Very silent, no auto-run
     - Skipped if Code.exe exists in %LOCALAPPDATA%\Programs\Microsoft VS Code
 

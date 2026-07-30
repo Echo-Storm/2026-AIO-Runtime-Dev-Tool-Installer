@@ -439,7 +439,9 @@ foreach ($jd in $jdkDefs) {
         -Install {
             $file = Get-File $jd.Url $jd.File
             if (-not $file) { return $false }
-            return (Run-Msi $file "/quiet /norestart" $jd.Name)
+            # INSTALLLEVEL=1 pulls in every optional MSI feature (PATH update,
+            # JAVA_HOME, .jar file association) - a bare /quiet install skips all of them.
+            return (Run-Msi $file "/quiet /norestart INSTALLLEVEL=1" $jd.Name)
         }
 }
 
@@ -484,7 +486,7 @@ Install-Component -Name "PowerShell $($pwshInfo.Version)" `
     -Install {
         $file = Get-File $pwshInfo.Url $pwshInfo.FileName
         if (-not $file) { return $false }
-        return (Run-Msi $file "/quiet /norestart ADD_EXPLORER_CONTEXT_MENU_OPENPOWERSHELL=1 ADD_FILE_CONTEXT_MENU_RUNPOWERSHELL=1 ENABLE_PSREMOTING=1 REGISTER_MANIFEST=1" "PowerShell $($pwshInfo.Version)")
+        return (Run-Msi $file "/quiet /norestart ADD_EXPLORER_CONTEXT_MENU_OPENPOWERSHELL=1 ADD_FILE_CONTEXT_MENU_RUNPOWERSHELL=1 ENABLE_PSREMOTING=1 REGISTER_MANIFEST=1 ADD_PATH=1" "PowerShell $($pwshInfo.Version)")
     }
 
 # ---------------------------------------------------------------------------
@@ -526,6 +528,49 @@ Install-Component -Name "Git $($gitInfo.Version)" `
     }
 
 # ---------------------------------------------------------------------------
+# NODE.JS (LATEST LTS)
+# ---------------------------------------------------------------------------
+Write-Host "`n--- Node.js (LTS) ---" -ForegroundColor Cyan
+$nodeInfo = $null
+try {
+    $nodeIndex = Invoke-RestMethod -Uri "https://nodejs.org/dist/index.json" -Headers @{ "User-Agent" = "AIO-Runtime-Installer" } -ErrorAction Stop
+    $ltsRow = $nodeIndex | Where-Object { $_.lts -ne $false } | Select-Object -First 1
+    if ($ltsRow) {
+        $nodeInfo = @{ Version = $ltsRow.version.TrimStart('v'); Url = "https://nodejs.org/dist/$($ltsRow.version)/node-$($ltsRow.version)-x64.msi" }
+    }
+} catch {
+    Log-Status "Could not query Node.js dist index ($($_.Exception.Message)); using pinned fallback"
+}
+if (-not $nodeInfo) {
+    $nodeInfo = @{ Version = "24.18.1"; Url = "https://nodejs.org/dist/v24.18.1/node-v24.18.1-x64.msi" }
+}
+
+Install-Component -Name "Node.js $($nodeInfo.Version) (LTS)" `
+    -IsInstalled { Test-Path "$env:ProgramFiles\nodejs\node.exe" } `
+    -Install {
+        $file = Get-File $nodeInfo.Url "node-$($nodeInfo.Version)-x64.msi"
+        if (-not $file) { return $false }
+        return (Run-Msi $file "/quiet /norestart ADDLOCAL=ALL" "Node.js $($nodeInfo.Version)")
+    }
+
+# ---------------------------------------------------------------------------
+# CMAKE (LATEST)
+# ---------------------------------------------------------------------------
+Write-Host "`n--- CMake ---" -ForegroundColor Cyan
+$cmakeInfo = Get-LatestGitHubAsset -Repo "Kitware/CMake" -AssetPattern '^cmake-[\d.]+-windows-x86_64\.msi$' `
+    -FallbackUrl "https://github.com/Kitware/CMake/releases/download/v4.4.1/cmake-4.4.1-windows-x86_64.msi" -FallbackVersion "4.4.1"
+
+Install-Component -Name "CMake $($cmakeInfo.Version)" `
+    -IsInstalled { Test-Path "$env:ProgramFiles\CMake\bin\cmake.exe" } `
+    -Install {
+        $file = Get-File $cmakeInfo.Url $cmakeInfo.FileName
+        if (-not $file) { return $false }
+        # ADD_CMAKE_TO_PATH=System is undocumented but stable - it's what CMake's own
+        # WiX installer exposes, and what GitHub Actions' runner-images setup uses.
+        return (Run-Msi $file "/quiet /norestart ADD_CMAKE_TO_PATH=System" "CMake $($cmakeInfo.Version)")
+    }
+
+# ---------------------------------------------------------------------------
 # VS CODE
 # ---------------------------------------------------------------------------
 Write-Host "`n--- Visual Studio Code ---" -ForegroundColor Cyan
@@ -547,6 +592,11 @@ if ($DryRun) {
     Log-Status "Removing temp_installers..."
     Remove-Item $TempDL -Recurse -Force -ErrorAction SilentlyContinue
     Log-Success "Done"
+
+    # Keep only the 10 most recent run logs so they don't accumulate forever.
+    Get-ChildItem -Path $Base -Filter "RuntimeInstall_Log_*.txt" -File -ErrorAction SilentlyContinue |
+        Sort-Object LastWriteTime -Descending | Select-Object -Skip 10 |
+        Remove-Item -Force -ErrorAction SilentlyContinue
 }
 
 # ---------------------------------------------------------------------------
