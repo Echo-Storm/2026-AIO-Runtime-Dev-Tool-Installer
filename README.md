@@ -145,4 +145,8 @@ Behavior Notes
 - Temp folder fully deleted at end (unless run with `-DryRun`, which touches nothing)
 - Designed to run elevated (batch wrapper recommended)
 
+Bonus: Windows Terminal Profile
+--------------------------------
+[`terminal/settings.json`](terminal/settings.json) is a color-coded Windows Terminal config that lines up with everything above - a profile per Python version, a Node.js REPL, a JShell (JDK 21) REPL, plus the usual shells. See [terminal/README.md](terminal/README.md) for install steps and caveats.
+
 Enjoy your fully loaded legacy + modern runtime setup!
